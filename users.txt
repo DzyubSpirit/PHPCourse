@@ -1,5 +1,0 @@
-O:4:"User":4:{s:4:"nick";s:4:"Vlad";s:8:"password";s:4:"1234";s:9:"greetings";a:1:{i:0;s:13:"Hello, world!";}s:8:"wishList";a:1:{i:0;s:18:"Fill the WishList!";}}
-O:4:"User":4:{s:4:"nick";s:4:"Vlad";s:8:"password";s:4:"1234";s:9:"greetings";a:1:{i:0;s:13:"Hello, world!";}s:8:"wishList";a:1:{i:0;s:18:"Fill the WishList!";}}
-O:4:"User":4:{s:4:"nick";s:4:"Vlad";s:8:"password";s:4:"1234";s:9:"greetings";a:1:{i:0;s:13:"Hello, world!";}s:8:"wishList";a:1:{i:0;s:18:"Fill the WishList!";}}
-O:4:"User":4:{s:4:"nick";s:4:"Roma";s:8:"password";s:13:"Ya_Master_PHP";s:9:"greetings";a:1:{i:0;s:13:"Hello, world!";}s:8:"wishList";a:1:{i:0;s:18:"Fill the WishList!";}}
-O:4:"User":4:{s:4:"nick";s:8:"New_User";s:8:"password";s:5:"19990";s:9:"greetings";a:1:{i:0;s:13:"Hello, world!";}s:8:"wishList";a:1:{i:0;s:18:"Fill the WishList!";}}

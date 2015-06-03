@@ -5,8 +5,9 @@
 
 	$userList = getUserList($db);
 
+
 	echo '<pre>';
-	var_dump($userList);
+	var_dump(getConfig());
 	echo '</pre>';
 	/*if (!empty($_POST)) {
 		editUser($db, 
@@ -19,21 +20,9 @@
 ?>
 
 <form method="POST">
-	Name:
-	<input type="text" name="name">
-	<br>
-	Email:
-	<input type="text" name="email">
-	<br>
-	Password:
-	<input type="text" name="password">
-	<br>
-	Date_create:
-	<input type="text" name="date_create">
-	<br>
-	Status:
-	<input type="text" name="is_active">
-	<br>
-
-	<input type="submit" value="Create User">
+	<table>
+		<? foreach ($userList as $user) : ?>
+			
+		<?endfor>
+	</table>
 </form>

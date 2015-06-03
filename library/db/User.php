@@ -1,11 +1,43 @@
 <?php
-	define("USERS_FILENAME", "users.txt");
+	define("USERS_FILENAME", "library/db/users.txt");
 
 	class User {
 		public $nick;
 		public $password;
 		public $greetings;
 		public $wishList;
+	}
+
+	function logUser($nick, $password) {
+		$file = fopen(USERS_FILENAME, "r");
+		while (!feof($file)) {
+			$str = fgets($file);
+			$curUser = unserialize($str);
+			if ($curUser) {
+				if (($nick == $curUser->nick) && ($password == $curUser->password)) {
+					fclose($file);
+					return array(true, $curUser);
+				}
+			}
+		}
+		return false;
+
+	}
+
+	function regUser($nick, $password) {
+		$file = fopen(USERS_FILENAME, "a");
+		
+		$user = new User();
+		$user->nick = $nick;
+		$user->password = $password;
+		$user->greetings = array("Hello, world!");
+		$user->wishList = array("Fill the WishList!");
+		fwrite($file, serialize($user));
+		// fwrite($file, "\r\n");
+		fclose($file);
+
+		return array(true, $user);
+
 	}
 
 	function logOrRegUser() {

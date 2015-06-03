@@ -1,7 +1,9 @@
 <?php
+	
 
 	function getConfig() {
-		return parse_ini_file('/var/www/dev.school-server/www/config/db.ini');
+		$dirName = dirname(__FILE__);
+		return parse_ini_file($dirName.'/../../config/db.ini');
 	}
 
 	function getConnect($config) {
