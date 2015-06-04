@@ -1,5 +1,7 @@
 <?php
-	define("USERS_FILENAME", "library/db/users.txt");
+	$dirName = dirname(__FILE__);
+
+	define("USERS_FILENAME", $dirName."/users.txt");
 
 	class User {
 		public $nick;
@@ -20,7 +22,7 @@
 				}
 			}
 		}
-		return false;
+		return array(false, NULL);
 
 	}
 
@@ -36,6 +38,8 @@
 		// fwrite($file, "\r\n");
 		fclose($file);
 
+		
+		
 		return array(true, $user);
 
 	}
@@ -92,13 +96,7 @@
 	}
 
 	function signOutUser() {
-		if (!isset($_POST['signOut'])) {
-			return;
-		}
-
-		if ($_POST['signOut'] == 'Yes') {
-			$_SESSION['logged'] = false;
-			$_SESSION['user'] = null;
-		}
+		$_SESSION['logged'] = false;
+		$_SESSION['user'] = null;
 	}
 ?>

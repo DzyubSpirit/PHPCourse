@@ -6,8 +6,22 @@
 	$db = getConnect($config);
 
 	if (!empty($_POST)) {
-		createUser($db, $_POST['name'], $_POST['email'],
+		if ($_POST['date_create'] == '') {
+			$_POST['date_create'] = -1;
+		}
+		if ($_POST['is_active'] == '') {
+			$_POST['is_active'] = 1;
+		}
+		list ($res, $data) = createUser($db, $_POST['name'], $_POST['email'],
 			$_POST['password'], $_POST['date_create'], $_POST['is_active']);
+
+		if ($res) {
+			echo '<pre>';
+			var_dump($data);
+			echo '</pre>';
+		} else {
+			echo 'Error: '.$data[2];
+		}
 	}
 ?>
 <form method="POST">

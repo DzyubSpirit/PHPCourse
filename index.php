@@ -15,6 +15,10 @@
 	// writeAllPostVars();
 	// writeAllSessionVars();
 
+	require('library/db/db.php');
+	$configDb = getConfig();
+	$db = getConnect($configDb);
+
 	require('library/db/User.php');
 	
 	if (isset($_POST['logOrReg'])) {
@@ -24,21 +28,18 @@
 		if (!isset($_POST['password'])) {
 			break;
 		}
+		
 		switch ($_POST['logOrReg']) {
 			case 'reg': {
-				list ($res, $resUser) = regUser($_POST['nick'], $_POST['password']);
+				list ($res, $resUser) = createUser($db, $_POST['nick'], $_POST['nick'].'@gmail.com', $_POST['password'], -1, 1);
 				if ($res) {
 					$_SESSION['logged'] = true;
 					$_SESSION['user'] = $resUser;
 				}
 			} break;
 			case 'log': {
-				if ($_SESSION['logged']) {
-					break;
-				}
 
-
-				list ($res, $resUser) = logUser($_POST['nick'], $_POST['password']);
+				list ($res, $resUser) = getUser($db, $_POST['nick'], $_POST['password']);
 
 				if (!$res) {
 					redisIncLogs($redis, $_POST['nick']);
@@ -73,7 +74,9 @@
 
 	// logOrRegUser();
 
-	signOutUser();
+	if (isset($_POST['signOut']) && $_POST['signOut'] == 'Yes') {
+		signOutUser();
+	}
 
 	// if ($_POST['nick'])
 
@@ -83,6 +86,7 @@
 <head>
 	<meta charset="utf-8">
 	<script src="index.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<title>My first-site</title>
 </head>
 <body>
@@ -94,5 +98,9 @@
 		}
 	?>
 
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
